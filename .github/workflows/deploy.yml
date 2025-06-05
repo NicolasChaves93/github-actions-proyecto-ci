@@ -3,9 +3,14 @@ name: Deploy
 on: push
 
 jobs:
-    first_job:
-        runs-on: ubuntu-latest
+  first_job:
+    runs-on: ubuntu-latest
 
-        steps:
-            - name: Print variable
-              run: echo "${{ secrets.TOKEN_SECRETS}}"
+    steps:
+      - name: Print variable
+        run: echo "${{ secrets.TOKEN_SECRETS }}"
+
+      - name: setup
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
