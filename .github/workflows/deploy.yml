@@ -1,3 +1,30 @@
+# Este flujo de trabajo de GitHub Actions automatiza el proceso de despliegue del proyecto.
+# 
+# Nombre del Workflow: Deploy
+#
+# Triggers:
+#   - Se ejecuta en cada push al repositorio.
+#
+# Jobs:
+#   1. build:
+#      - Se ejecuta en la última versión de Ubuntu.
+#      - Pasos:
+#        - Imprime una variable secreta para propósitos de depuración.
+#        - Realiza checkout del código del repositorio.
+#        - Configura Node.js versión 18.
+#        - Instala las dependencias del proyecto usando npm.
+#        - Ejecuta las pruebas con npm.
+#        - Construye el proyecto usando el script de build de npm.
+#        - Sube los artefactos de build desde el directorio 'public/' para el despliegue.
+#
+#   2. deploy:
+#      - Se ejecuta en la última versión de Ubuntu.
+#      - Depende de la finalización exitosa del trabajo 'build'.
+#      - Establece permisos para el despliegue en GitHub Pages y token OIDC.
+#      - Especifica el ambiente de despliegue como 'github-pages'.
+#      - Despliega los artefactos subidos a GitHub Pages usando la acción deploy-pages.
+#      - Expone la URL de la página desplegada como salida.
+
 name: Deploy
 
 on: push
